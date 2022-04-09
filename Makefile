@@ -1,17 +1,14 @@
-C = gcc
-CFLAG = -g -I -std=c99 -std=gnu99 -D_SVID_SOURCE -D_POSIX_C_SOURCE
+CC=gcc
+CFLAGS=-Wall -O2 -g -std=c99 -std=gnu99
 
 all: oss user
 
-%.o: %.c
-	$(CC) $(CFLAG) -c  $< -o $@ -lm
+oss: oss.c
+	$(CC) $(CFLAGS) oss.c -o oss
 
-oss: oss.o
-	$(CC) $(CFLAG) $< -o $@ -lm
-
-user: user.o
-	$(CC) $(CFLAG) $< -o $@ -lm
+user: user.c
+	$(CC) $(CFLAGS) user.c -o user
 
 clean:
-	rm -f *.o oss user cstest logfile.*
+	rm -rf oss user log.txt 
 
